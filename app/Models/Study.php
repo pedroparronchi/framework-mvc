@@ -17,4 +17,11 @@ class Study extends Model
         'status',
         'area_id'
     ];
+
+    public function area()
+    {
+        // $this->belongsTo('App\Models\Area');
+        // return $this->belongsTo(Area::class, 'area_id', 'id');
+        return $this->belongsTo(Area::class);
+    }
 }

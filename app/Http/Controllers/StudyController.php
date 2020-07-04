@@ -82,6 +82,9 @@ class StudyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $study = $this->study->findOrFail($id);
+        $study->delete();
+
+        return redirect()->route('studies.index');
     }
 }
