@@ -37,7 +37,7 @@ class AreaController extends Controller
         // resource/views/areas
         // dump && die
         // dd($areas);
-        $areas = $this->area->all();
+        $areas = $this->area->paginate(5);
         return view('areas.index', compact('areas'));
     }
 

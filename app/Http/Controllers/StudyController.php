@@ -90,9 +90,16 @@ class StudyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudyRequest $request, $id)
     {
-        //
+        $study = $this->study->findOrFail($id);
+        $study->fill($request->all());
+        $study->update();
+
+        return redirect()->route('studies.index')
+            // ->with(['msg' => 'Atualizado com sucesso'])
+            ->withSuccess('Atualizado com sucesso');
+            // Session success
     }
 
     /**

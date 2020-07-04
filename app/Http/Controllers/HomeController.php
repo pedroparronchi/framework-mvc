@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(\Correios::cep('18013-000'));
         return view('home'); 
     }
 }

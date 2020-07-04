@@ -35,5 +35,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $areas->links() }}
 </div>
 @endsection
