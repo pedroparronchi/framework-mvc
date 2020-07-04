@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StudyRequest;
 use App\Models\Study;
+use App\Models\Area;
 
 class StudyController extends Controller
 {
@@ -13,8 +15,16 @@ class StudyController extends Controller
      */
     protected $study;
 
-    public function __construct(Study $study) {
+    /**
+     * @var \App\Models\Area
+     */
+    protected $area;
+
+    // Area $area
+    public function __construct(Study $study, Area $areaParam) {
         $this->study = $study;
+        $this->area = $areaParam;
+        // $this->area = $area;
     }
 
     /**
@@ -25,7 +35,7 @@ class StudyController extends Controller
     public function index()
     {
         // resources/views/studies/index.blade.php
-        $studies = $this->study->all();
+        $studies = $this->study->paginate();
         return view('studies.index', compact('studies'));
     }
 
@@ -36,18 +46,25 @@ class StudyController extends Controller
      */
     public function create()
     {
-        //
+        // resources/aviews/studies/create.blade.php
+        // todas as areas
+        $areas = $this->area->all();
+        return view('studies.create', compact('areas'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StudyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudyRequest $request)
     {
-        //
+        $study = new Study();
+        $study->fill($request->all());
+        $study->save();
+
+        return redirect()->route('studies.index');
     }
 
 
@@ -59,7 +76,11 @@ class StudyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $areas = $this->area->all();
+        $study = $this->study->findOrFail($id);
+        return view('studies.edit', compact('areas', 'study'));
+        // return view('studies.edit', ['areas' => $areas, 'study' => $study]);
+        // return view('studies.edit')->with(['areas' => $areas, 'study' => $study]);
     }
 
     /**

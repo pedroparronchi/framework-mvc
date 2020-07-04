@@ -10,6 +10,8 @@ class Study extends Model
 
     // public $timestamp = true;
 
+    public $perPage = 5;
+
     public $fillable = [
         'description',
         'date_init',

@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h1>Listagem de Estudos</h1>
+    <h1>Listagem de Estudos
+        <a href="{{ route('studies.create') }}" class="btn btn-info">Cadastrar</a>
+    </h1>
+
 
     <table class="table">
         <thead>
@@ -17,8 +20,8 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($studies as $study)
             <tr>
-                @foreach($studies as $study)
                 <td>{{ $study->id }}</td>
                 <td>{{ $study->description }}</td>
                 <td>{{ $study->area->description }}</td>
@@ -26,17 +29,19 @@
                 <td>{{ $study->date_finish }}</td>
                 <td>{{ $study->status }}</td>
                 <td>
-                    <button class="btn btn-info">Editar</button>
+                    <a href="{{ route('studies.edit', ['study' => $study->id]) }}" class="btn btn-info">Editar</a>
                     <form action="{{ route('studies.destroy', ['study' => $study->id]) }}" method="post">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>
                 </td>
-                @endforeach
             </tr>
+            @endforeach
         </tbody>
     </table>
+
+    {{ $studies->links() }}
 </div>
 
 @endsection
