@@ -29,4 +29,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/areas/create', 'AreaController@create');
 // Route::post('/areas/store', 'AreaController@store');
 
-Route::resource('areas', 'AreaController');
+// Route::resource('areas', 'AreaController')
+//     ->only('index', 'edit', 'destroy', 'update', 'store');
+
+// Route::resource('areas', 'AreaController')
+//     ->except('show');
+
+Route::resource('areas', 'AreaController')
+    ->except('show');
+
+Route::resource('studies', 'StudyController')
+    ->except('show');

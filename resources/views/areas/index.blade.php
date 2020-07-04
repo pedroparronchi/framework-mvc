@@ -8,7 +8,7 @@
         </a>
     </h1>
 
-    <table class="table table-responsive">
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,8 +24,12 @@
                 <td>{{ $area->description }}</td>
                 <td>{{ $area->color }}</td>
                 <td>
-                    <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger">Excluir</button>
+                    <a href="{{ route('areas.edit', ['area' => $area->id]) }}" class="btn btn-primary">Editar</a>
+                    <form action="{{ route('areas.destroy', ['area' => $area->id]) }}" method="post">
+                        @csrf
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
