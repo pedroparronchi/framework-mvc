@@ -45,7 +45,8 @@
                             <label for="zipcode" class="col-md-4 col-form-label text-md-right">CEP</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="zipcode" id="cep" value="{{ old('zipcode') }}" class="form-control @error('zipcode') is-invalid @enderror">
+                                <input type="text" name="zipcode" id="cep" value="{{ old('zipcode') }}" 
+                                class="form-control @error('zipcode') is-invalid @enderror" required>
 
                                 @error('zipcode')
                                 <span class="invalid-feedback">
@@ -59,7 +60,8 @@
                             <label for="number" class="col-md-4 col-form-label text-md-right">Número</label>
 
                             <div class="col-md-6">
-                                <input type="number" min="1" name="number" id="number" class="form-control @error('number') is-invalid @enderror">
+                                <input type="number" min="1" name="number" id="number" 
+                                class="form-control @error('number') is-invalid @enderror" required>
 
                                 @error('number')
                                 <span class="invalid-feedback">
