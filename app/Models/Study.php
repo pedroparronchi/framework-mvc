@@ -26,4 +26,9 @@ class Study extends Model
         // return $this->belongsTo(Area::class, 'area_id', 'id');
         return $this->belongsTo(Area::class);
     }
+
+    // public function estudosEmAtraso()
+    // {
+    //     return $this->select('name', 'email')->get();
+    // }
 }

@@ -22,6 +22,7 @@ class StudyController extends Controller
 
     // Area $area
     public function __construct(Study $study, Area $areaParam) {
+        // $this->middleware('auth');
         $this->study = $study;
         $this->area = $areaParam;
         // $this->area = $area;
